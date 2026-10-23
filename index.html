@@ -5,71 +5,185 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TSURVIBOI</title>
 <meta name="description" content="TSURVIBOI: survivors-like hecho por fans con los personajes de The Binding of Isaac. Descarga el instalador para Windows.">
+<meta name="theme-color" content="#140d0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='26' fill='%23f0c8b0' stroke='%231a0f0c' stroke-width='4'/%3E%3Ccircle cx='22' cy='30' r='7' fill='%231a0f0c'/%3E%3Ccircle cx='42' cy='30' r='7' fill='%231a0f0c'/%3E%3Cpath d='M22 37q-2 10 0 18' stroke='%238fd3ff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M42 37q2 10 0 18' stroke='%238fd3ff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
   :root {
-    --fondo: #1a1012;
-    --panel: #261719;
-    --borde: #3d2427;
-    --texto: #f1e6e3;
-    --suave: #b8a7a4;
-    --rojo: #c0392f;
-    --rojo-hover: #d9473c;
+    --sotano: #140d0b;
+    --piedra: #2a1d18;
+    --papel: #eadcbf;
+    --papel-osc: #d6c29d;
+    --tinta: #2b1a12;
+    --tinta-suave: #5e4636;
+    --crema: #f4e6cf;
+    --sangre: #a5201c;
+    --sangre-viva: #c9302a;
+    --lagrima: #8fd3ff;
+    --rotulador: "Permanent Marker", "Segoe Print", cursive;
+    --mano: "Patrick Hand", "Segoe Print", cursive;
   }
   * { box-sizing: border-box; }
+  html { background: var(--sotano); }
   body {
     margin: 0;
-    background: var(--fondo);
-    color: var(--texto);
-    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    color: var(--crema);
+    font: 21px/1.45 var(--mano);
+    background:
+      radial-gradient(ellipse at 50% 18%, rgba(120, 60, 35, .35), transparent 60%),
+      radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, .75) 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Cg fill='none' stroke='%23000' stroke-opacity='.35' stroke-width='3'%3E%3Cpath d='M0 40h70l8-2h82M0 80h30l6 2h64l4-2h56M70 0v38M110 40v40M30 80v40M150 80v40M40 0v40'/%3E%3C/g%3E%3Cg fill='%23fff' fill-opacity='.025'%3E%3Crect x='4' y='4' width='32' height='32'/%3E%3Crect x='84' y='46' width='22' height='30'/%3E%3Crect x='112' y='86' width='34' height='30'/%3E%3C/g%3E%3C/svg%3E"),
+      var(--piedra);
+    background-attachment: fixed;
+    overflow-x: hidden;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
-  h1 { font-size: clamp(40px, 9vw, 64px); letter-spacing: 2px; margin: 0; line-height: 1.1; }
-  .lema { color: var(--suave); margin: 8px 0 32px; font-size: 19px; }
+
+  @media (prefers-reduced-motion: reduce) { .descargar:hover { transform: none; } }
+
+  main { max-width: 860px; margin: 0 auto; padding: 64px 16px 56px; }
+
+  header { text-align: center; }
+  h1 {
+    font: 400 clamp(56px, 13vw, 112px)/1 var(--rotulador);
+    margin: 0; letter-spacing: 3px;
+    color: var(--crema);
+    text-shadow: 0 4px 0 var(--sangre), 0 9px 18px rgba(0,0,0,.7);
+    transform: rotate(-2deg);
+  }
+  .lema { font-size: clamp(21px, 4vw, 26px); color: #d9c4ad; margin: 18px auto 30px; max-width: 34ch; }
+
   .descargar {
-    display: inline-block; background: var(--rojo); color: #fff; text-decoration: none;
-    font-weight: 700; font-size: 20px; padding: 16px 28px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 14px;
+    font: 400 clamp(24px, 5vw, 32px)/1 var(--rotulador);
+    color: #fff; text-decoration: none;
+    background: linear-gradient(#c9302a, #8e1915);
+    padding: 20px 34px 18px;
+    border: 3px solid #1a0b09;
+    border-radius: 18px 26px 16px 28px / 26px 16px 28px 18px;
+    box-shadow: 0 6px 0 #4a0c0a, 0 14px 30px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.25);
+    transition: transform .12s, box-shadow .12s;
   }
-  .descargar:hover { background: var(--rojo-hover); }
-  .version { color: var(--suave); font-size: 15px; margin-top: 10px; }
-  section { background: var(--panel); border: 1px solid var(--borde); border-radius: 10px; padding: 20px 24px; margin-top: 28px; }
-  h2 { font-size: 21px; margin: 0 0 10px; }
-  ol, ul { padding-left: 22px; margin: 0; }
-  li { margin: 6px 0; }
-  code { background: #120b0c; padding: 1px 6px; border-radius: 4px; font-size: 15px; word-break: break-all; }
-  .legal { color: var(--suave); font-size: 14px; margin-top: 32px; }
-  a { color: #f0857c; }
+  .descargar:hover { transform: translateY(-2px) rotate(-1deg); }
+  .descargar:active { transform: translateY(4px); box-shadow: 0 2px 0 #4a0c0a, 0 6px 14px rgba(0,0,0,.6); }
+  .descargar:focus-visible { outline: 3px dashed var(--lagrima); outline-offset: 6px; }
+  .version { color: #bfa892; font-size: 19px; margin-top: 14px; }
+  .chapas { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .chapas li { border: 2px dashed rgba(244,230,207,.35); border-radius: 999px; padding: 2px 14px; font-size: 18px; color: #e3d2bd; }
+
+  /* Notas de papel */
+  .notas { display: grid; gap: 34px; margin-top: 56px; }
+  .nota {
+    position: relative;
+    color: var(--tinta);
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.35), transparent 55%),
+      radial-gradient(ellipse at 90% 100%, rgba(120,80,40,.18), transparent 60%),
+      linear-gradient(var(--papel), var(--papel-osc));
+    padding: 30px 30px 26px;
+    border-radius: 4px 10px 6px 12px / 12px 5px 10px 4px;
+    box-shadow: 0 12px 26px rgba(0,0,0,.55), inset 0 0 40px rgba(110,70,30,.18);
+  }
+  .nota:nth-child(odd) { transform: rotate(-.7deg); }
+  .nota:nth-child(even) { transform: rotate(.6deg); }
+  .nota h2 {
+    font: 400 32px/1.1 var(--rotulador); margin: 0 0 14px; color: var(--sangre);
+    display: inline-block; background: linear-gradient(transparent 70%, rgba(165,32,28,.18) 70%);
+  }
+  .nota p { margin: 0 0 10px; }
+  .nota p:last-child { margin-bottom: 0; }
+  .nota strong { color: #1a0d07; }
+  .nota code { font: 18px/1 Consolas, monospace; background: rgba(43,26,18,.1); padding: 2px 6px; border-radius: 4px; word-break: break-all; }
+
+  .pasos { list-style: none; margin: 0; padding: 0; counter-reset: paso; display: grid; gap: 14px; }
+  .pasos li { counter-increment: paso; position: relative; padding-left: 58px; min-height: 44px; }
+  .pasos li::before {
+    content: counter(paso);
+    position: absolute; left: 0; top: -2px; width: 42px; height: 46px;
+    font: 400 24px/48px var(--rotulador); text-align: center; color: #0f2a3a;
+    background: var(--lagrima);
+    border: 3px solid var(--tinta);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  }
+  .necesitas { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .necesitas li::before { content: "●"; color: var(--sangre); margin-right: 10px; font-size: 14px; vertical-align: 3px; }
+
+  details { border-top: 2px dashed rgba(43,26,18,.3); padding: 10px 0; }
+  details:first-of-type { border-top: 0; padding-top: 0; }
+  summary { cursor: pointer; font-size: 23px; color: #1a0d07; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "+"; display: inline-block; width: 24px; font-family: var(--rotulador); color: var(--sangre); transition: transform .15s; }
+  details[open] summary::before { transform: rotate(45deg); }
+  details p { margin: 6px 0 4px 24px; color: var(--tinta-suave); }
+
+  .legal { color: #a38f7c; font-size: 17px; text-align: center; margin: 54px auto 0; max-width: 62ch; }
+  a { color: #ffb4a8; }
+  .nota a { color: var(--sangre); }
+
+  @media (max-width: 560px) {
+    body { font-size: 19px; }
+    .nota { padding: 24px 20px 20px; }
+    .nota h2 { font-size: 27px; }
+  }
 </style>
 </head>
 <body>
 <main>
-  <h1>TSURVIBOI</h1>
-  <p class="lema">Survivors-like hecho por fans, con los personajes, enemigos, jefes y objetos de The Binding of Isaac: Repentance.</p>
+  <header>
+    <h1>TSURVIBOI</h1>
+    <p class="lema">Un survivors-like hecho por fans con los personajes, enemigos, jefes y objetos de The Binding of Isaac: Repentance.</p>
 
-  <a class="descargar" href="https://github.com/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest/download/TSURVIBOI-instalador.exe">Descargar para Windows</a>
-  <div class="version" id="version">Windows 10/11, 64 bits</div>
-
-  <section>
-    <h2>Necesitas</h2>
-    <ul>
-      <li><strong>The Binding of Isaac: Rebirth + Repentance</strong> (o Repentance+) comprado e instalado en <strong>Steam</strong>.</li>
-      <li>Unos 1,2 GB libres en el disco la primera vez.</li>
+    <a class="descargar" href="https://github.com/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest/download/TSURVIBOI-instalador.exe">
+      Descargar para Windows
+    </a>
+    <div class="version" id="version">Instalador para Windows 10/11 · 64 bits</div>
+    <ul class="chapas">
+      <li>Gratis</li><li>Se actualiza solo</li><li>Sin anuncios</li><li>Tus partidas se guardan</li>
     </ul>
-  </section>
+  </header>
 
-  <section>
-    <h2>Instalar</h2>
-    <ol>
-      <li>Descarga y abre <code>TSURVIBOI-instalador.exe</code>. Si Windows dice «Windows protegió su PC», pulsa <em>Más información</em> → <em>Ejecutar de todas formas</em> (pasa con los programas que no están firmados).</li>
-      <li>Lee el aviso, elige la carpeta y termina la instalación.</li>
-      <li>La primera vez que se abre, el juego te pide permiso para sacar los gráficos, sonidos y música de tu copia de The Binding of Isaac con el extractor oficial del propio juego. Tarda unos minutos.</li>
-      <li>¡A jugar! Las actualizaciones son automáticas: al abrirlo, si hay versión nueva, se instala sola.</li>
-    </ol>
-  </section>
+  <div class="notas">
+    <section class="nota">
+      <h2>Necesitas</h2>
+      <ul class="necesitas">
+        <li><strong>The Binding of Isaac: Rebirth + Repentance</strong> (o Repentance+) comprado e instalado en <strong>Steam</strong>.</li>
+        <li>Unos <strong>1,2 GB</strong> libres en el disco la primera vez (luego se queda en unos 850 MB).</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>¿Por qué no trae los gráficos?</h2>
-    <p style="margin:0">Los gráficos, sonidos y música de The Binding of Isaac tienen copyright, así que TSURVIBOI no los distribuye. Los saca de tu propia copia de Steam, se quedan solo en tu PC y tu instalación de The Binding of Isaac no se modifica.</p>
-  </section>
+    <section class="nota">
+      <h2>Cómo se instala</h2>
+      <ol class="pasos">
+        <li>Descarga y abre <code>TSURVIBOI-instalador.exe</code>. Si Windows dice «Windows protegió su PC», pulsa <strong>Más información</strong> y luego <strong>Ejecutar de todas formas</strong> (pasa con los programas que no están firmados).</li>
+        <li>Lee el aviso, elige la carpeta y termina la instalación.</li>
+        <li>La primera vez que se abre, el juego te pide permiso para sacar los gráficos, sonidos y música de <strong>tu</strong> copia de The Binding of Isaac con el extractor oficial del propio juego. Tarda unos minutos.</li>
+        <li>¡A llorar! Digo… ¡a jugar! Las actualizaciones son automáticas: al abrirlo, si hay versión nueva, se instala sola.</li>
+      </ol>
+    </section>
+
+    <section class="nota">
+      <h2>¿Por qué no trae los gráficos?</h2>
+      <p>Los gráficos, sonidos y música de The Binding of Isaac tienen copyright, así que TSURVIBOI no los reparte. Los saca de tu propia copia de Steam, se quedan solo en tu PC y tu instalación de The Binding of Isaac no se toca.</p>
+    </section>
+
+    <section class="nota">
+      <h2>Preguntas</h2>
+      <details>
+        <summary>Windows dice que el programa no es seguro</summary>
+        <p>Es el aviso de SmartScreen para los programas que no tienen firma digital (cuesta dinero). Pulsa «Más información» y «Ejecutar de todas formas».</p>
+      </details>
+      <details>
+        <summary>No encuentra mi The Binding of Isaac</summary>
+        <p>Tiene que estar instalado desde Steam con Repentance. Si lo tienes en otro disco, también lo busca en tus bibliotecas de Steam. Si aun así falla, en la carpeta del juego queda <code>extractor.log</code> con lo que ha pasado.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se desinstala?</summary>
+        <p>Desde «Agregar o quitar programas» de Windows, como cualquier otro. Se borran el juego y los recursos sacados de TBOI; tus partidas se quedan en <code>%APPDATA%\TSURVIBOI</code> por si vuelves.</p>
+      </details>
+    </section>
+  </div>
 
   <p class="legal">TSURVIBOI es un proyecto de fans gratuito y sin ánimo de lucro. No está hecho, apoyado ni respaldado por Edmund McMillen, Nicalis ni los dueños de The Binding of Isaac. The Binding of Isaac es propiedad de sus respectivos dueños.</p>
 </main>
@@ -77,7 +191,7 @@
   // Versión de la última Release (si GitHub responde)
   fetch("https://api.github.com/repos/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest")
     .then(r => r.ok ? r.json() : null)
-    .then(j => { if (j && j.tag_name) document.getElementById("version").textContent = "Versión " + j.tag_name + " · Windows 10/11, 64 bits"; })
+    .then(j => { if (j && j.tag_name) document.getElementById("version").textContent = "Versión " + j.tag_name.replace(/^v/, "") + " · Windows 10/11 · 64 bits"; })
     .catch(() => {});
 </script>
 </body>
