@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TSURVIBOI</title>
-<meta name="description" content="TSURVIBOI: survivors-like hecho por fans con los personajes de The Binding of Isaac. Descarga el instalador para Windows.">
+<meta name="description" content="TSURVIBOI: survivors-like hecho por fans con los personajes de The Binding of Isaac. Descarga el instalador para Windows o Linux.">
 <meta name="theme-color" content="#140d0b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='26' fill='%23f0c8b0' stroke='%231a0f0c' stroke-width='4'/%3E%3Ccircle cx='22' cy='30' r='7' fill='%231a0f0c'/%3E%3Ccircle cx='42' cy='30' r='7' fill='%231a0f0c'/%3E%3Cpath d='M22 37q-2 10 0 18' stroke='%238fd3ff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M42 37q2 10 0 18' stroke='%238fd3ff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,6 +75,15 @@
   .descargar:hover { transform: translateY(-2px) rotate(-1deg); }
   .descargar:active { transform: translateY(4px); box-shadow: 0 2px 0 #4a0c0a, 0 6px 14px rgba(0,0,0,.6); }
   .descargar:focus-visible { outline: 3px dashed var(--lagrima); outline-offset: 6px; }
+  .botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 18px; }
+  .descargar.otro { background: linear-gradient(#5e4636, #36241b); box-shadow: 0 6px 0 #1a0f0c, 0 14px 30px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.2); }
+  .comando { display: flex; gap: 10px; align-items: stretch; margin: 6px 0 14px; }
+  .comando code { flex: 1; display: block; padding: 10px 12px; line-height: 1.35; }
+  .copiar {
+    font: 400 19px/1 var(--rotulador); color: #fff; cursor: pointer;
+    background: var(--sangre); border: 2px solid var(--tinta); border-radius: 10px 14px 9px 13px; padding: 0 14px;
+  }
+  .copiar:focus-visible { outline: 3px dashed var(--sangre); outline-offset: 3px; }
   .version { color: #bfa892; font-size: 19px; margin-top: 14px; }
   .chapas { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin: 16px 0 0; padding: 0; list-style: none; }
   .chapas li { border: 2px dashed rgba(244,230,207,.35); border-radius: 999px; padding: 2px 14px; font-size: 18px; color: #e3d2bd; }
@@ -132,6 +141,8 @@
     body { font-size: 19px; }
     .nota { padding: 24px 20px 20px; }
     .nota h2 { font-size: 27px; }
+    .comando { flex-direction: column; }
+    .copiar { padding: 10px 14px; align-self: flex-start; }
   }
 </style>
 </head>
@@ -141,10 +152,13 @@
     <h1>TSURVIBOI</h1>
     <p class="lema">Un survivors-like hecho por fans con los personajes, enemigos, jefes y objetos de The Binding of Isaac: Repentance.</p>
 
-    <a class="descargar" href="https://github.com/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest/download/TSURVIBOI-instalador.exe">
-      Descargar para Windows
-    </a>
-    <div class="version" id="version">Instalador para Windows 10/11 · 64 bits</div>
+    <div class="botones">
+      <a class="descargar" href="https://github.com/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest/download/TSURVIBOI-instalador.exe">
+        Descargar para Windows
+      </a>
+      <a class="descargar otro" href="#linux">Para Linux</a>
+    </div>
+    <div class="version" id="version">Windows 10/11 y Linux · 64 bits</div>
     <ul class="chapas">
       <li>Gratis</li><li>Se actualiza solo</li><li>Sin anuncios</li><li>Tus partidas se guardan</li>
     </ul>
@@ -160,13 +174,23 @@
     </section>
 
     <section class="nota">
-      <h2>Cómo se instala</h2>
+      <h2>Cómo se instala en Windows</h2>
       <ol class="pasos">
         <li>Descarga y abre <code>TSURVIBOI-instalador.exe</code>. Si Windows dice «Windows protegió su PC», pulsa <strong>Más información</strong> y luego <strong>Ejecutar de todas formas</strong> (pasa con los programas que no están firmados).</li>
         <li>Lee el aviso, elige la carpeta y termina la instalación.</li>
         <li>La primera vez que se abre, el juego te pide permiso para sacar los gráficos, sonidos y música de <strong>tu</strong> copia de The Binding of Isaac con el extractor oficial del propio juego. Tarda unos minutos.</li>
         <li>¡A llorar! Digo… ¡a jugar! Las actualizaciones son automáticas: al abrirlo, si hay versión nueva, se instala sola.</li>
       </ol>
+    </section>
+
+    <section class="nota" id="linux">
+      <h2>En Linux</h2>
+      <p>Abre una terminal y pega esto (no hace falta ser administrador: todo va a tu carpeta personal):</p>
+      <div class="comando">
+        <code id="comando-linux">curl -fsSL https://github.com/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest/download/TSURVIBOI-instalador.sh | bash</code>
+        <button class="copiar" type="button" id="copiar">Copiar</button>
+      </div>
+      <p>Te enseña el aviso, instala el juego en <code>~/.local/share/tsurviboi</code> y lo pone en el menú de aplicaciones. Lo demás es igual que en Windows: la primera vez saca los recursos de tu The Binding of Isaac de Steam (vale el de Proton) y se actualiza solo. Para quitarlo: <code>bash ~/.local/share/tsurviboi/desinstalar.sh</code>.</p>
     </section>
 
     <section class="nota">
@@ -186,7 +210,7 @@
       </details>
       <details>
         <summary>¿Cómo se desinstala?</summary>
-        <p>Desde «Agregar o quitar programas» de Windows, como cualquier otro. Se borran el juego y los recursos sacados de TBOI; tus partidas se quedan en <code>%APPDATA%\TSURVIBOI</code> por si vuelves.</p>
+        <p>Desde «Agregar o quitar programas» de Windows, como cualquier otro. Se borran el juego y los recursos sacados de TBOI; tus partidas se quedan en <code>%APPDATA%\TSURVIBOI</code> por si vuelves. En Linux, con <code>bash ~/.local/share/tsurviboi/desinstalar.sh</code> (las partidas se quedan en <code>~/.config/tsurviboi</code>).</p>
       </details>
     </section>
   </div>
@@ -197,8 +221,13 @@
   // Versión de la última Release (si GitHub responde)
   fetch("https://api.github.com/repos/IzanMorenoNunez/TSURVIBOI-descargas/releases/latest")
     .then(r => r.ok ? r.json() : null)
-    .then(j => { if (j && j.tag_name) document.getElementById("version").textContent = "Versión " + j.tag_name.replace(/^v/, "") + " · Windows 10/11 · 64 bits"; })
+    .then(j => { if (j && j.tag_name) document.getElementById("version").textContent = "Versión " + j.tag_name.replace(/^v/, "") + " · Windows 10/11 y Linux · 64 bits"; })
     .catch(() => {});
+  document.getElementById("copiar").addEventListener("click", e => {
+    navigator.clipboard.writeText(document.getElementById("comando-linux").textContent)
+      .then(() => { e.target.textContent = "¡Copiado!"; setTimeout(() => e.target.textContent = "Copiar", 2000); })
+      .catch(() => {});
+  });
 </script>
 </body>
 </html>
